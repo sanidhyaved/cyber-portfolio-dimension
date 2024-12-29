@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Terminal, Bug, Server } from "lucide-react";
 
 const experiences = [
   {
@@ -11,6 +12,7 @@ const experiences = [
       "Market Intelligence and Data Analysis",
       "Expertise in NIST-RMF, PCI-DSS, SOC-2, CIS Controls",
     ],
+    icon: <Server className="w-8 h-8 text-secondary" />,
   },
   {
     title: "Web Pentesting",
@@ -22,18 +24,19 @@ const experiences = [
       "Technical vulnerability communication",
       "Application security consultation",
     ],
+    icon: <Bug className="w-8 h-8 text-secondary" />,
   },
 ];
 
 const Experience = () => {
   return (
-    <section className="py-20 bg-white" id="experience">
+    <section className="py-20 bg-[#221F26]" id="experience">
       <div className="container mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-center mb-12 text-primary"
+          className="text-3xl font-bold text-center mb-12 text-secondary"
         >
           Professional Experience
         </motion.h2>
@@ -45,17 +48,22 @@ const Experience = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="mb-12 bg-gray-50 rounded-lg p-6 shadow-lg"
+              className="mb-12 bg-primary/50 rounded-lg p-6 border border-secondary/20 hover:border-secondary/50 transition-colors"
             >
-              <h3 className="text-xl font-bold text-secondary mb-2">
-                {exp.title}
-              </h3>
-              <p className="text-gray-600 mb-2">
-                {exp.company} | {exp.period}
-              </p>
-              <ul className="list-disc list-inside text-gray-700">
+              <div className="flex items-center mb-4">
+                {exp.icon}
+                <div className="ml-4">
+                  <h3 className="text-xl font-bold text-secondary mb-1">
+                    {exp.title}
+                  </h3>
+                  <p className="text-gray-400">
+                    {exp.company} | {exp.period}
+                  </p>
+                </div>
+              </div>
+              <ul className="list-disc list-inside text-gray-300 space-y-2">
                 {exp.description.map((item, idx) => (
-                  <li key={idx} className="mb-1">
+                  <li key={idx} className="ml-4">
                     {item}
                   </li>
                 ))}

@@ -3,13 +3,13 @@ import { Mail, Phone, MapPin } from "lucide-react";
 
 const Contact = () => {
   return (
-    <section className="py-20 bg-primary" id="contact">
+    <section className="py-20 bg-[#221F26]" id="contact">
       <div className="container mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-center mb-12 text-white"
+          className="text-3xl font-bold text-center mb-12 text-secondary"
         >
           Get in Touch
         </motion.h2>
@@ -18,13 +18,13 @@ const Contact = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center text-white"
+            className="text-center text-gray-300"
           >
-            <Mail className="w-8 h-8 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Email</h3>
+            <Mail className="w-8 h-8 mx-auto mb-4 text-secondary" />
+            <h3 className="text-xl font-semibold mb-2 text-white">Email</h3>
             <a
               href="mailto:sanidhyaved@gmail.com"
-              className="hover:text-gray-300 transition-colors"
+              className="hover:text-secondary transition-colors"
             >
               sanidhyaved@gmail.com
             </a>
@@ -34,10 +34,10 @@ const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-center text-white"
+            className="text-center text-gray-300"
           >
-            <Phone className="w-8 h-8 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Phone</h3>
+            <Phone className="w-8 h-8 mx-auto mb-4 text-secondary" />
+            <h3 className="text-xl font-semibold mb-2 text-white">Phone</h3>
             <p>+91-63772-73784</p>
           </motion.div>
           <motion.div
@@ -45,10 +45,10 @@ const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="text-center text-white"
+            className="text-center text-gray-300"
           >
-            <MapPin className="w-8 h-8 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Location</h3>
+            <MapPin className="w-8 h-8 mx-auto mb-4 text-secondary" />
+            <h3 className="text-xl font-semibold mb-2 text-white">Location</h3>
             <p>Pune, Maharashtra</p>
           </motion.div>
         </div>

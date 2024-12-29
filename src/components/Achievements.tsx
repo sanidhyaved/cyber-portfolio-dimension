@@ -1,20 +1,20 @@
 import { motion } from "framer-motion";
-import { Award, Shield, Youtube } from "lucide-react";
+import { Shield, Terminal, Youtube } from "lucide-react";
 
 const achievements = [
   {
-    icon: <Award className="w-8 h-8 text-primary" />,
+    icon: <Shield className="w-8 h-8 text-secondary" />,
     title: "Microsoft Security Recognition",
     description:
       "13th position globally in Microsoft Security Response Center Q3 2022 leaderboard",
   },
   {
-    icon: <Shield className="w-8 h-8 text-primary" />,
+    icon: <Terminal className="w-8 h-8 text-secondary" />,
     title: "Intel CVE Assignment",
     description: "Assigned CVE-2023-27298 affecting Intel's WULT software",
   },
   {
-    icon: <Youtube className="w-8 h-8 text-primary" />,
+    icon: <Youtube className="w-8 h-8 text-secondary" />,
     title: "Community Contribution",
     description:
       'Founded "The Cyber Explorers" YouTube channel for cybersecurity education',
@@ -23,13 +23,13 @@ const achievements = [
 
 const Achievements = () => {
   return (
-    <section className="py-20 bg-gray-50" id="achievements">
+    <section className="py-20 bg-primary" id="achievements">
       <div className="container mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-center mb-12 text-primary"
+          className="text-3xl font-bold text-center mb-12 text-secondary"
         >
           Achievements
         </motion.h2>
@@ -41,13 +41,19 @@ const Achievements = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="bg-white p-6 rounded-lg shadow-lg text-center"
+              className="bg-[#221F26] p-6 rounded-lg border border-secondary/20 hover:border-secondary/50 transition-colors"
             >
-              <div className="flex justify-center mb-4">{achievement.icon}</div>
+              <motion.div 
+                className="flex justify-center mb-4"
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                {achievement.icon}
+              </motion.div>
               <h3 className="text-xl font-semibold mb-2 text-secondary">
                 {achievement.title}
               </h3>
-              <p className="text-gray-600">{achievement.description}</p>
+              <p className="text-gray-300">{achievement.description}</p>
             </motion.div>
           ))}
         </div>
