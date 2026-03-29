@@ -1,89 +1,100 @@
 import { motion } from "framer-motion";
-import { GraduationCap } from "lucide-react";
 
 const educationData = [
   {
-    school: "D.Y. Patil College of Engineering, Akurdi",
-    degree: "B.E. in Electronics and Telecommunication",
-    location: "Pune, Maharashtra",
-    period: "Aug. 2018 – May 2022",
-    score: "9.34 CGPA",
+    school: "D.Y. Patil College of Engineering",
+    degree: "B.E. Electronics & Telecommunication",
+    location: "Pune",
+    period: "2018 — 2022",
+    score: "9.34",
+    scoreLabel: "CGPA",
   },
   {
     school: "Growell Public School",
     degree: "Higher Secondary (HSC)",
-    location: "Kota, Rajasthan",
-    period: "July 2017 – May 2018",
-    score: "81%",
+    location: "Kota",
+    period: "2017 — 2018",
+    score: "81",
+    scoreLabel: "%",
   },
   {
     school: "Hyundan Model School",
     degree: "Secondary School (SSC)",
-    location: "Ramganjmandi, Rajasthan",
-    period: "May 2016 – June 2017",
-    score: "86.17%",
+    location: "Ramganjmandi",
+    period: "2016 — 2017",
+    score: "86.17",
+    scoreLabel: "%",
   },
 ];
 
 const Education = () => {
   return (
-    <section className="py-24 relative" id="education">
-      <div className="absolute inset-0 bg-background cyber-grid" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+    <section className="py-32 relative noise" id="education">
+      <div className="absolute inset-0 gradient-mesh opacity-30" />
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-20"
         >
-          <span className="font-mono text-xs tracking-[0.3em] uppercase text-primary/60 mb-2 block">
-            // education.history
+          <span className="font-mono text-[11px] tracking-[0.25em] uppercase text-primary block mb-3">
+            03 — Education
           </span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-glow text-primary">
-            Education
+          <h2 className="font-display text-[clamp(3rem,8vw,6rem)] leading-[0.9] text-foreground">
+            ACADEMIC
+            <br />
+            <span className="text-accent text-glow-green">JOURNEY</span>
           </h2>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto relative">
-          {/* Timeline line */}
-          <div className="absolute left-[19px] top-0 bottom-0 w-px bg-gradient-to-b from-primary/40 via-primary/20 to-transparent" />
+        <div className="max-w-3xl space-y-0">
+          {educationData.map((edu, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.15 }}
+              className="group relative"
+            >
+              {/* Connecting line */}
+              {index < educationData.length - 1 && (
+                <div className="absolute left-[27px] top-14 bottom-0 w-px bg-gradient-to-b from-primary/20 to-transparent" />
+              )}
 
-          <div className="space-y-8">
-            {educationData.map((edu, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-                className="relative pl-12 group"
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-[13px] top-2 w-[13px] h-[13px] rounded-full border-2 border-primary/50 bg-background group-hover:border-primary group-hover:shadow-[0_0_10px_hsl(160_100%_50%/0.3)] transition-all" />
-
-                <div className="bg-card/50 backdrop-blur-sm rounded-lg border border-border hover:border-primary/30 p-5 transition-all duration-500">
-                  <div className="flex items-start justify-between gap-4 flex-wrap">
-                    <div>
-                      <h3 className="font-display text-sm font-bold text-foreground group-hover:text-primary transition-colors">
-                        {edu.school}
-                      </h3>
-                      <p className="font-mono text-xs text-muted-foreground mt-1">
-                        {edu.degree}
-                      </p>
+              <div className="flex gap-6 py-6">
+                {/* Score circle */}
+                <div className="relative flex-shrink-0">
+                  <div className="w-14 h-14 rounded-full border border-primary/20 group-hover:border-primary/50 flex items-center justify-center transition-all group-hover:shadow-[0_0_20px_hsl(150_80%_55%/0.15)]">
+                    <div className="text-center">
+                      <span className="font-display text-lg text-primary block leading-none">
+                        {edu.score}
+                      </span>
+                      <span className="font-mono text-[8px] text-muted-foreground">
+                        {edu.scoreLabel}
+                      </span>
                     </div>
-                    <span className="font-mono text-xs text-primary border border-primary/20 px-2 py-0.5 rounded whitespace-nowrap">
-                      {edu.score}
-                    </span>
                   </div>
-                  <p className="font-mono text-[11px] text-muted-foreground mt-2">
-                    {edu.location} · {edu.period}
-                  </p>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-heading text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                    {edu.school}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {edu.degree}
+                  </p>
+                  <div className="flex items-center gap-3 mt-2">
+                    <span className="font-mono text-[10px] text-muted-foreground">{edu.location}</span>
+                    <span className="w-1 h-1 rounded-full bg-muted-foreground/30" />
+                    <span className="font-mono text-[10px] text-muted-foreground">{edu.period}</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

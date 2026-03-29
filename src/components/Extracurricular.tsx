@@ -1,53 +1,54 @@
 import { motion } from "framer-motion";
-import { Camera, Palette, Film, Dumbbell } from "lucide-react";
+import { Camera, Palette, Film, Dumbbell, ExternalLink } from "lucide-react";
 
 const activities = [
   {
     icon: <Camera className="w-5 h-5" />,
     title: "Photography",
-    description: "Lead the photography team in college.",
-    link: { url: "https://www.pexels.com/@sanidhya-ved-998649/", label: "View on Pexels" },
+    description: "Lead college photography team",
+    link: { url: "https://www.pexels.com/@sanidhya-ved-998649/", label: "Pexels Portfolio" },
   },
   {
     icon: <Palette className="w-5 h-5" />,
     title: "Graphic Design",
-    description: "Designed certificates, banners, and posters. 5-month internship.",
+    description: "Certificates, banners, posters — 5 month internship",
     tools: ["Photoshop", "Premiere Pro", "Blender"],
   },
   {
     icon: <Film className="w-5 h-5" />,
-    title: "Creative Arts",
-    description: "Screenplay writer, Director, and Actor for Acts and short films.",
+    title: "Film & Theater",
+    description: "Screenplay writer, Director, Actor for shorts & acts",
   },
   {
     icon: <Dumbbell className="w-5 h-5" />,
-    title: "Sports & Hobbies",
-    description: "Swimming, Cricket, Table Tennis, Billiards, and Hydroponics.",
+    title: "Sports",
+    description: "Swimming, Cricket, Table Tennis, Billiards, Hydroponics",
   },
 ];
 
 const Extracurricular = () => {
   return (
-    <section className="py-24 relative" id="extracurricular">
-      <div className="absolute inset-0 bg-background cyber-grid" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+    <section className="py-32 relative noise" id="extracurricular">
+      <div className="absolute inset-0 gradient-mesh opacity-30" />
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-20"
         >
-          <span className="font-mono text-xs tracking-[0.3em] uppercase text-primary/60 mb-2 block">
-            // beyond.code
+          <span className="font-mono text-[11px] tracking-[0.25em] uppercase text-primary block mb-3">
+            05 — Beyond
           </span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-glow text-primary">
-            Beyond Security
+          <h2 className="font-display text-[clamp(3rem,8vw,6rem)] leading-[0.9] text-foreground">
+            OUTSIDE
+            <br />
+            <span className="text-secondary text-glow-purple">THE CODE</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-4 max-w-4xl">
           {activities.map((activity, index) => (
             <motion.div
               key={index}
@@ -55,17 +56,17 @@ const Extracurricular = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group bg-card/50 backdrop-blur-sm rounded-lg border border-border hover:border-primary/30 p-5 transition-all duration-500"
+              className="group glass rounded-2xl p-6 hover-lift"
             >
               <div className="flex items-start gap-4">
-                <div className="w-9 h-9 rounded border border-primary/20 flex items-center justify-center text-muted-foreground group-hover:text-primary group-hover:border-primary/40 transition-all flex-shrink-0">
+                <div className="w-10 h-10 rounded-full glass flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0">
                   {activity.icon}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-display text-sm font-bold text-foreground group-hover:text-primary transition-colors mb-1">
+                  <h3 className="font-heading text-base font-bold text-foreground group-hover:text-primary transition-colors">
                     {activity.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
                     {activity.description}
                   </p>
                   {activity.link && (
@@ -73,9 +74,10 @@ const Extracurricular = () => {
                       href={activity.link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 font-mono text-xs text-primary hover:text-primary/80 mt-2 transition-colors"
+                      className="inline-flex items-center gap-1.5 font-mono text-[11px] text-primary hover:underline mt-2"
                     >
-                      → {activity.link.label}
+                      {activity.link.label}
+                      <ExternalLink className="w-3 h-3" />
                     </a>
                   )}
                   {activity.tools && (
@@ -83,7 +85,7 @@ const Extracurricular = () => {
                       {activity.tools.map((tool, i) => (
                         <span
                           key={i}
-                          className="font-mono text-[10px] px-2 py-0.5 rounded border border-primary/15 text-muted-foreground"
+                          className="font-mono text-[10px] px-2.5 py-0.5 rounded-full border border-foreground/8 text-muted-foreground"
                         >
                           {tool}
                         </span>
