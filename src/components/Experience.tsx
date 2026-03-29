@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Terminal, Bug, Server } from "lucide-react";
+import { Server, Bug, ArrowRight } from "lucide-react";
 
 const experiences = [
   {
@@ -12,7 +12,8 @@ const experiences = [
       "Market Intelligence and Data Analysis",
       "Expertise in NIST-RMF, PCI-DSS, SOC-2, CIS Controls",
     ],
-    icon: <Server className="w-8 h-8 text-secondary" />,
+    icon: <Server className="w-5 h-5" />,
+    tag: "FULL-TIME",
   },
   {
     title: "Web Pentesting",
@@ -24,50 +25,79 @@ const experiences = [
       "Technical vulnerability communication",
       "Application security consultation",
     ],
-    icon: <Bug className="w-8 h-8 text-secondary" />,
+    icon: <Bug className="w-5 h-5" />,
+    tag: "FREELANCE",
   },
 ];
 
 const Experience = () => {
   return (
-    <section className="py-20 bg-[#221F26]" id="experience">
-      <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+    <section className="py-24 relative" id="experience">
+      <div className="absolute inset-0 bg-background cyber-grid" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-center mb-12 text-secondary"
+          className="mb-16"
         >
-          Professional Experience
-        </motion.h2>
-        <div className="max-w-4xl mx-auto">
+          <span className="font-mono text-xs tracking-[0.3em] uppercase text-primary/60 mb-2 block">
+            // career.log
+          </span>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-glow text-primary">
+            Experience
+          </h2>
+        </motion.div>
+
+        <div className="max-w-4xl mx-auto space-y-6">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              className="mb-12 bg-primary/50 rounded-lg p-6 border border-secondary/20 hover:border-secondary/50 transition-colors"
+              transition={{ delay: index * 0.15, duration: 0.5 }}
+              className="group relative bg-card/50 backdrop-blur-sm rounded-lg border border-border hover:border-primary/40 transition-all duration-500 overflow-hidden"
             >
-              <div className="flex items-center mb-4">
-                {exp.icon}
-                <div className="ml-4">
-                  <h3 className="text-xl font-bold text-secondary mb-1">
-                    {exp.title}
-                  </h3>
-                  <p className="text-gray-400">
-                    {exp.company} | {exp.period}
-                  </p>
+              {/* Hover glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="relative p-6 md:p-8">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded border border-primary/30 flex items-center justify-center text-primary flex-shrink-0 group-hover:box-glow transition-all">
+                      {exp.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-display text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                        {exp.title}
+                      </h3>
+                      <p className="font-mono text-sm text-muted-foreground">
+                        {exp.company}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-[10px] tracking-widest uppercase text-primary border border-primary/20 px-2 py-0.5 rounded">
+                      {exp.tag}
+                    </span>
+                    <span className="font-mono text-xs text-muted-foreground">
+                      {exp.period}
+                    </span>
+                  </div>
                 </div>
+
+                <ul className="space-y-2 ml-14">
+                  {exp.description.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground group-hover:text-foreground/70 transition-colors">
+                      <ArrowRight className="w-3 h-3 text-primary mt-1 flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="list-disc list-inside text-gray-300 space-y-2">
-                {exp.description.map((item, idx) => (
-                  <li key={idx} className="ml-4">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </motion.div>
           ))}
         </div>

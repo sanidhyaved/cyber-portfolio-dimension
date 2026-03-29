@@ -3,63 +3,87 @@ import { Camera, Palette, Film, Dumbbell } from "lucide-react";
 
 const activities = [
   {
-    icon: <Camera className="w-8 h-8 text-secondary" />,
+    icon: <Camera className="w-5 h-5" />,
     title: "Photography",
-    description: "Lead the photography team in college. View my work on Pexels: https://www.pexels.com/photo/brown-concrete-building-under-blue-sky-17559795/",
+    description: "Lead the photography team in college.",
+    link: { url: "https://www.pexels.com/@sanidhya-ved-998649/", label: "View on Pexels" },
   },
   {
-    icon: <Palette className="w-8 h-8 text-secondary" />,
+    icon: <Palette className="w-5 h-5" />,
     title: "Graphic Design",
-    description: "Designed certificates, banners, and posters for college. 5-month internship experience.",
-    tools: ["Adobe Photoshop", "Adobe Premiere Pro", "Blender"]
+    description: "Designed certificates, banners, and posters. 5-month internship.",
+    tools: ["Photoshop", "Premiere Pro", "Blender"],
   },
   {
-    icon: <Film className="w-8 h-8 text-secondary" />,
+    icon: <Film className="w-5 h-5" />,
     title: "Creative Arts",
-    description: "Story screenplay writer, Director, and Actor for Acts and short films. Proficient in creative tools and editing software.",
+    description: "Screenplay writer, Director, and Actor for Acts and short films.",
   },
   {
-    icon: <Dumbbell className="w-8 h-8 text-secondary" />,
+    icon: <Dumbbell className="w-5 h-5" />,
     title: "Sports & Hobbies",
-    description: "Interested in Swimming, Cricket, Table Tennis, Billiards, and Hydroponics.",
+    description: "Swimming, Cricket, Table Tennis, Billiards, and Hydroponics.",
   },
 ];
 
 const Extracurricular = () => {
   return (
-    <section className="py-20 bg-primary" id="extracurricular">
-      <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+    <section className="py-24 relative" id="extracurricular">
+      <div className="absolute inset-0 bg-background cyber-grid" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-center mb-12 text-secondary"
+          className="mb-16"
         >
-          Leadership & Extracurricular
-        </motion.h2>
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <span className="font-mono text-xs tracking-[0.3em] uppercase text-primary/60 mb-2 block">
+            // beyond.code
+          </span>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-glow text-primary">
+            Beyond Security
+          </h2>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {activities.map((activity, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              className="bg-primary/50 p-6 rounded-lg border border-secondary/20 hover:border-secondary/50 transition-colors"
+              transition={{ delay: index * 0.1 }}
+              className="group bg-card/50 backdrop-blur-sm rounded-lg border border-border hover:border-primary/30 p-5 transition-all duration-500"
             >
-              <div className="flex items-start">
-                {activity.icon}
-                <div className="ml-4">
-                  <h3 className="text-xl font-bold text-secondary mb-2">
+              <div className="flex items-start gap-4">
+                <div className="w-9 h-9 rounded border border-primary/20 flex items-center justify-center text-muted-foreground group-hover:text-primary group-hover:border-primary/40 transition-all flex-shrink-0">
+                  {activity.icon}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-display text-sm font-bold text-foreground group-hover:text-primary transition-colors mb-1">
                     {activity.title}
                   </h3>
-                  <p className="text-gray-300">{activity.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {activity.description}
+                  </p>
+                  {activity.link && (
+                    <a
+                      href={activity.link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 font-mono text-xs text-primary hover:text-primary/80 mt-2 transition-colors"
+                    >
+                      → {activity.link.label}
+                    </a>
+                  )}
                   {activity.tools && (
-                    <div className="mt-2 flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5 mt-3">
                       {activity.tools.map((tool, i) => (
                         <span
                           key={i}
-                          className="text-xs px-2 py-1 rounded-full bg-secondary/10 text-secondary"
+                          className="font-mono text-[10px] px-2 py-0.5 rounded border border-primary/15 text-muted-foreground"
                         >
                           {tool}
                         </span>

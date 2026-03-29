@@ -1,54 +1,93 @@
 import { motion } from "framer-motion";
 import { Code2, Database, Wrench } from "lucide-react";
 
-const skillsData = {
-  Languages: {
-    icon: <Code2 className="w-8 h-8 text-secondary" />,
+const skillsData = [
+  {
+    category: "Languages",
+    icon: <Code2 className="w-5 h-5" />,
     skills: ["Python", "C", "HTML/CSS", "JavaScript"],
+    color: "primary" as const,
   },
-  Tools: {
-    icon: <Wrench className="w-8 h-8 text-secondary" />,
+  {
+    category: "Tools",
+    icon: <Wrench className="w-5 h-5" />,
     skills: ["VS Code", "Burpsuite", "OWASP ZAP", "OSINT tools"],
+    color: "secondary" as const,
   },
-  Databases: {
-    icon: <Database className="w-8 h-8 text-secondary" />,
+  {
+    category: "Databases",
+    icon: <Database className="w-5 h-5" />,
     skills: ["SQL", "MongoDB"],
+    color: "accent" as const,
   },
-};
+];
 
 const Skills = () => {
   return (
-    <section className="py-20 bg-[#1A1F2C]" id="skills">
-      <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+    <section className="py-24 relative" id="skills">
+      <div className="absolute inset-0 bg-muted/30" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-center mb-12 text-secondary"
+          className="mb-16"
         >
-          Technical Skills
-        </motion.h2>
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-          {Object.entries(skillsData).map(([category, { icon, skills }], index) => (
+          <span className="font-mono text-xs tracking-[0.3em] uppercase text-primary/60 mb-2 block">
+            // skills.config
+          </span>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-glow text-primary">
+            Arsenal
+          </h2>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {skillsData.map(({ category, icon, skills, color }, index) => (
             <motion.div
               key={category}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              className="bg-primary/50 p-6 rounded-lg border border-secondary/20 hover:border-secondary/50 transition-colors"
+              transition={{ delay: index * 0.15 }}
+              className="group relative"
             >
-              <div className="flex items-center mb-4">
-                {icon}
-                <h3 className="text-xl font-semibold ml-3 text-white">{category}</h3>
+              <div className="bg-card/50 backdrop-blur-sm rounded-lg border border-border hover:border-primary/40 p-6 h-full transition-all duration-500 relative overflow-hidden">
+                {/* Corner accent */}
+                <div className="absolute top-0 right-0 w-16 h-16">
+                  <div className="absolute top-0 right-0 w-px h-8 bg-gradient-to-b from-primary/40 to-transparent" />
+                  <div className="absolute top-0 right-0 h-px w-8 bg-gradient-to-l from-primary/40 to-transparent" />
+                </div>
+
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-9 h-9 rounded border border-primary/30 flex items-center justify-center text-primary">
+                    {icon}
+                  </div>
+                  <div>
+                    <span className="font-mono text-[10px] tracking-widest uppercase text-muted-foreground block">
+                      module
+                    </span>
+                    <h3 className="font-display text-sm font-bold text-foreground">
+                      {category}
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  {skills.map((skill) => (
+                    <div
+                      key={skill}
+                      className="flex items-center gap-2 group/skill"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover/skill:bg-primary transition-colors" />
+                      <span className="font-mono text-sm text-muted-foreground group-hover/skill:text-foreground transition-colors">
+                        {skill}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <ul className="space-y-2">
-                {skills.map((skill) => (
-                  <li key={skill} className="text-gray-300">
-                    • {skill}
-                  </li>
-                ))}
-              </ul>
             </motion.div>
           ))}
         </div>
