@@ -1,76 +1,92 @@
 import { motion } from "framer-motion";
-import { Shield, Terminal, Youtube, Award } from "lucide-react";
+import { Shield, Terminal, Youtube } from "lucide-react";
 
 const achievements = [
   {
-    icon: <Shield className="w-6 h-6" />,
+    icon: <Shield className="w-7 h-7" />,
     title: "Microsoft MSRC",
-    subtitle: "Global Rank #13",
-    description: "13th position globally in Microsoft Security Response Center Q3 2022 leaderboard",
-    highlight: true,
+    metric: "#13",
+    metricLabel: "Global Rank",
+    description: "Q3 2022 Microsoft Security Response Center leaderboard",
+    featured: true,
   },
   {
-    icon: <Terminal className="w-6 h-6" />,
+    icon: <Terminal className="w-7 h-7" />,
     title: "Intel CVE",
-    subtitle: "CVE-2023-27298",
+    metric: "CVE",
+    metricLabel: "2023-27298",
     description: "Assigned CVE affecting Intel's WULT software",
   },
   {
-    icon: <Youtube className="w-6 h-6" />,
+    icon: <Youtube className="w-7 h-7" />,
     title: "The Cyber Explorers",
-    subtitle: "YouTube Channel",
-    description: "Founded cybersecurity education YouTube channel for the community",
+    metric: "YT",
+    metricLabel: "Channel",
+    description: "Founded cybersecurity education YouTube channel",
   },
 ];
 
 const Achievements = () => {
   return (
-    <section className="py-24 relative" id="achievements">
-      <div className="absolute inset-0 bg-muted/30" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+    <section className="py-32 relative" id="achievements">
+      <div className="absolute inset-0 bg-muted/20" />
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-20"
         >
-          <span className="font-mono text-xs tracking-[0.3em] uppercase text-primary/60 mb-2 block">
-            // achievements.unlock
+          <span className="font-mono text-[11px] tracking-[0.25em] uppercase text-primary block mb-3">
+            04 — Achievements
           </span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-glow text-primary">
-            Achievements
+          <h2 className="font-display text-[clamp(3rem,8vw,6rem)] leading-[0.9] text-foreground">
+            NOTABLE
+            <br />
+            <span className="text-primary text-glow-green">WINS</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-4">
           {achievements.map((a, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.15 }}
-              className={`group relative bg-card/50 backdrop-blur-sm rounded-lg border ${
-                a.highlight ? 'border-primary/40 box-glow' : 'border-border'
-              } hover:border-primary/40 p-6 transition-all duration-500 overflow-hidden`}
+              transition={{ delay: index * 0.12 }}
+              className={`group glass rounded-2xl p-8 hover-lift relative overflow-hidden ${
+                a.featured ? 'md:row-span-1' : ''
+              }`}
             >
-              {a.highlight && (
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+              {a.featured && (
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
               )}
-              
-              <div className="flex items-center gap-3 mb-4">
-                <div className={`w-10 h-10 rounded border ${
-                  a.highlight ? 'border-primary/50 text-primary' : 'border-primary/20 text-muted-foreground'
-                } flex items-center justify-center group-hover:text-primary group-hover:border-primary/50 transition-all`}>
+
+              <div className="flex items-start justify-between mb-8">
+                <div className="text-muted-foreground group-hover:text-primary transition-colors">
                   {a.icon}
                 </div>
-                <div>
-                  <h3 className="font-display text-sm font-bold text-foreground">{a.title}</h3>
-                  <span className="font-mono text-[10px] tracking-wider uppercase text-primary/70">{a.subtitle}</span>
-                </div>
+                {a.featured && (
+                  <span className="font-mono text-[9px] tracking-widest uppercase text-primary/60 border border-primary/15 px-2 py-0.5 rounded-full">
+                    Featured
+                  </span>
+                )}
               </div>
+
+              <div className="mb-4">
+                <span className="font-display text-5xl text-foreground group-hover:text-primary transition-colors">
+                  {a.metric}
+                </span>
+                <span className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground block mt-1">
+                  {a.metricLabel}
+                </span>
+              </div>
+
+              <h3 className="font-heading text-base font-bold text-foreground mb-2">
+                {a.title}
+              </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {a.description}
               </p>

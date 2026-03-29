@@ -1,102 +1,100 @@
 import { motion } from "framer-motion";
-import { Server, Bug, ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const experiences = [
   {
     title: "Security Analyst",
     company: "Codewits Solutions Pvt. Ltd.",
-    period: "July 2022 – Present",
-    description: [
-      "R and D on SaaS Security Posture Management (SSPM)",
-      "Extract and process data from SaaS applications",
-      "Market Intelligence and Data Analysis",
-      "Expertise in NIST-RMF, PCI-DSS, SOC-2, CIS Controls",
+    period: "2022 — Present",
+    points: [
+      "R&D on SaaS Security Posture Management (SSPM)",
+      "Data extraction & processing from SaaS applications",
+      "Market Intelligence & Data Visualization",
+      "NIST-RMF, PCI-DSS, SOC-2, CIS Controls expertise",
     ],
-    icon: <Server className="w-5 h-5" />,
-    tag: "FULL-TIME",
+    tag: "Full-time",
   },
   {
     title: "Web Pentesting",
     company: "Freelancing",
-    period: "May 2019 – Present",
-    description: [
-      "Security Engineer with 3 years of experience",
-      "Manual penetration testing and vulnerability assessment",
-      "Technical vulnerability communication",
-      "Application security consultation",
+    period: "2019 — Present",
+    points: [
+      "3+ years penetration testing experience",
+      "Manual VAPT & vulnerability assessment",
+      "Security consultation & technical reporting",
+      "Application security architecture review",
     ],
-    icon: <Bug className="w-5 h-5" />,
-    tag: "FREELANCE",
+    tag: "Freelance",
   },
 ];
 
 const Experience = () => {
   return (
-    <section className="py-24 relative" id="experience">
-      <div className="absolute inset-0 bg-background cyber-grid" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+    <section className="py-32 relative noise" id="experience">
+      <div className="absolute inset-0 gradient-mesh opacity-50" />
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="flex items-end justify-between mb-20"
         >
-          <span className="font-mono text-xs tracking-[0.3em] uppercase text-primary/60 mb-2 block">
-            // career.log
-          </span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-glow text-primary">
-            Experience
-          </h2>
+          <div>
+            <span className="font-mono text-[11px] tracking-[0.25em] uppercase text-primary block mb-3">
+              01 — Experience
+            </span>
+            <h2 className="font-display text-[clamp(3rem,8vw,6rem)] leading-[0.9] text-foreground">
+              WHERE I'VE
+              <br />
+              <span className="text-primary text-glow-green">WORKED</span>
+            </h2>
+          </div>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto space-y-6">
+        {/* Experience cards */}
+        <div className="space-y-4">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.15, duration: 0.5 }}
-              className="group relative bg-card/50 backdrop-blur-sm rounded-lg border border-border hover:border-primary/40 transition-all duration-500 overflow-hidden"
+              transition={{ delay: index * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="group glass rounded-2xl p-8 md:p-10 hover-lift cursor-default"
             >
-              {/* Hover glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <div className="relative p-6 md:p-8">
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded border border-primary/30 flex items-center justify-center text-primary flex-shrink-0 group-hover:box-glow transition-all">
-                      {exp.icon}
-                    </div>
-                    <div>
-                      <h3 className="font-display text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-                        {exp.title}
-                      </h3>
-                      <p className="font-mono text-sm text-muted-foreground">
-                        {exp.company}
-                      </p>
-                    </div>
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-1">
+                    <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
+                      {exp.title}
+                    </h3>
+                    <ArrowUpRight className="w-5 h-5 text-primary opacity-0 group-hover:opacity-100 transition-all -translate-y-1 group-hover:translate-y-0" />
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="font-mono text-[10px] tracking-widest uppercase text-primary border border-primary/20 px-2 py-0.5 rounded">
-                      {exp.tag}
-                    </span>
-                    <span className="font-mono text-xs text-muted-foreground">
-                      {exp.period}
-                    </span>
-                  </div>
+                  <p className="font-mono text-sm text-muted-foreground">
+                    {exp.company}
+                  </p>
                 </div>
+                <div className="flex items-center gap-3 flex-shrink-0">
+                  <span className="font-mono text-[10px] tracking-widest uppercase text-primary/70 border border-primary/20 px-3 py-1 rounded-full">
+                    {exp.tag}
+                  </span>
+                  <span className="font-mono text-xs text-muted-foreground">
+                    {exp.period}
+                  </span>
+                </div>
+              </div>
 
-                <ul className="space-y-2 ml-14">
-                  {exp.description.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground group-hover:text-foreground/70 transition-colors">
-                      <ArrowRight className="w-3 h-3 text-primary mt-1 flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="grid md:grid-cols-2 gap-3 mt-8">
+                {exp.points.map((point, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <div className="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    <span className="text-sm text-muted-foreground group-hover:text-foreground/70 transition-colors">
+                      {point}
+                    </span>
+                  </div>
+                ))}
               </div>
             </motion.div>
           ))}
