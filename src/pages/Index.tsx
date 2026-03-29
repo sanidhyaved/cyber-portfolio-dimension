@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Experience from "@/components/Experience";
 import Achievements from "@/components/Achievements";
@@ -8,7 +9,8 @@ import Extracurricular from "@/components/Extracurricular";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
+      <Navbar />
       <Hero />
       <Experience />
       <Skills />
