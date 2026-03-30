@@ -45,7 +45,7 @@ const experiences = [
 
 const Experience = () => {
   return (
-    <section className="section-padding relative" id="experience">
+    <section className="section-padding relative overflow-hidden" id="experience">
       <div className="gradient-blob w-[400px] h-[400px] bg-accent/10 top-[10%] left-[-150px] animate-glow-pulse" />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -66,11 +66,13 @@ const Experience = () => {
         </motion.div>
 
         {/* Timeline */}
-        <div className="relative max-w-3xl">
-          {/* Vertical line */}
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-primary/30 via-secondary/20 to-transparent" />
+        <div className="relative w-full max-w-3xl">
+          {/* Vertical line (Desktop) */}
+          <div className="hidden md:block absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-primary/30 via-secondary/20 to-transparent" />
+          {/* Horizontal line (Mobile) */}
+          <div className="md:hidden absolute top-6 left-0 right-0 h-px bg-gradient-to-r from-primary/30 via-secondary/20 to-transparent" />
 
-          <div className="space-y-12">
+          <div className="flex md:block overflow-x-auto md:overflow-visible snap-x snap-mandatory space-x-6 md:space-x-0 md:space-y-12 pb-8 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 [scrollbar-width:none]">
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
@@ -78,10 +80,10 @@ const Experience = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="relative pl-16"
+                className="relative pt-16 md:pt-0 md:pl-16 w-[85vw] md:w-full flex-shrink-0 snap-center md:snap-align-none"
               >
                 {/* Timeline dot */}
-                <div className="absolute left-[14px] top-2 w-5 h-5 rounded-full border-2 border-primary bg-background flex items-center justify-center">
+                <div className="absolute left-1/2 -translate-x-1/2 top-[14px] md:left-[14px] md:translate-x-0 md:top-2 w-5 h-5 rounded-full border-2 border-primary bg-background flex items-center justify-center">
                   <div className="w-2 h-2 rounded-full bg-primary" />
                 </div>
 

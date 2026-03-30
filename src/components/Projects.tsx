@@ -227,9 +227,11 @@ const Projects = () => {
         </motion.div>
 
         {/* Project Cards */}
-        <div className="space-y-8">
+        <div className="flex md:block overflow-x-auto md:overflow-visible snap-x snap-mandatory space-x-6 md:space-x-0 md:space-y-12 pb-8 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 [scrollbar-width:none]">
           {projects.map((project, i) => (
-            <ProjectCard key={project.name} project={project} index={i} />
+            <div key={project.name} className="w-[85vw] md:w-full flex-shrink-0 snap-center md:snap-align-none">
+              <ProjectCard project={project} index={i} />
+            </div>
           ))}
         </div>
 

@@ -10,7 +10,7 @@ const FloatingResume = () => {
       className="fixed bottom-8 right-8 z-50 hidden md:block"
     >
       <a
-        href="/Resume.pdf"
+        href="/Sanidhya Resume.pdf"
         target="_blank"
         rel="noopener noreferrer"
         className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-[0_0_20px_hsl(230_90%_65%/0.3)] hover:shadow-[0_0_40px_hsl(230_90%_65%/0.5)] transition-all duration-300 hover:-translate-y-2 hover:scale-110"

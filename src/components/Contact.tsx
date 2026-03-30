@@ -5,19 +5,12 @@ import { useState } from "react";
 const socials = [
   { icon: <Github className="w-5 h-5" />, href: "https://github.com/sanidhyaved", label: "GitHub" },
   { icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com/in/sanidhyaved", label: "LinkedIn" },
-  { icon: <Twitter className="w-5 h-5" />, href: "#", label: "Twitter" },
+  //{ icon: <Twitter className="w-5 h-5" />, href: "#", label: "Twitter" },
 ];
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    window.location.href = `mailto:sanidhyaved@gmail.com?subject=Contact from ${formData.name}&body=${formData.message}%0A%0AFrom: ${formData.email}`;
-  };
-
   return (
-    <section className="section-padding relative" id="contact">
+    <section className="section-padding relative overflow-hidden" id="contact">
       <div className="gradient-blob w-[600px] h-[600px] bg-primary/10 top-[-200px] left-[-200px] animate-glow-pulse" />
       <div className="gradient-blob w-[400px] h-[400px] bg-secondary/10 bottom-[-100px] right-[-100px] animate-glow-pulse" />
 
@@ -37,96 +30,46 @@ const Contact = () => {
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {/* Form */}
-          <motion.form
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass-card glow-border rounded-2xl p-8 space-y-6"
-          >
-            <div>
-              <label className="text-sm text-muted-foreground mb-2 block">Name</label>
-              <input
-                type="text"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-muted/30 border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/20 transition-all"
-                placeholder="Your name"
-                required
-              />
-            </div>
-            <div>
-              <label className="text-sm text-muted-foreground mb-2 block">Email</label>
-              <input
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full bg-muted/30 border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/20 transition-all"
-                placeholder="your@email.com"
-                required
-              />
-            </div>
-            <div>
-              <label className="text-sm text-muted-foreground mb-2 block">Message</label>
-              <textarea
-                rows={4}
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full bg-muted/30 border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/20 transition-all resize-none"
-                placeholder="Your message..."
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full px-8 py-3.5 bg-gradient-to-r from-primary to-secondary text-primary-foreground font-semibold text-sm rounded-xl hover:shadow-[0_0_40px_hsl(230_90%_65%/0.3)] transition-all hover:scale-[1.02] flex items-center justify-center gap-2"
-            >
-              Send Message <Send className="w-4 h-4" />
-            </button>
-          </motion.form>
-
+        <div className="max-w-3xl mx-auto">
           {/* Info */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="flex flex-col justify-between"
+            className="flex flex-col items-center gap-12"
           >
-            <div className="space-y-6">
+            <div className="grid sm:grid-cols-3 w-full gap-6">
               {[
-                { icon: <Mail className="w-5 h-5" />, label: "Email", value: "sanidhyaved@gmail.com", href: "mailto:sanidhyaved@gmail.com" },
-                { icon: <Phone className="w-5 h-5" />, label: "Phone", value: "+91-63772-73784", href: "tel:+916377273784" },
-                { icon: <MapPin className="w-5 h-5" />, label: "Location", value: "Pune, Maharashtra" },
+                { icon: <Mail className="w-6 h-6" />, label: "Email", value: "sanidhyaved@gmail.com", href: "mailto:sanidhyaved@gmail.com" },
+                { icon: <Phone className="w-6 h-6" />, label: "Phone", value: "+91-63772-73784", href: "tel:+916377273784" },
+                { icon: <MapPin className="w-6 h-6" />, label: "Location", value: "Pune, Maharashtra" },
               ].map((c, i) => (
-                <div key={i} className="glass-card rounded-2xl p-5 flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                <div key={i} className="glass-card rounded-2xl p-6 flex flex-col items-center text-center gap-4 hover:border-primary/30 transition-all hover:-translate-y-2">
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 shadow-lg">
                     {c.icon}
                   </div>
                   <div>
-                    <span className="font-mono text-[10px] tracking-widest uppercase text-muted-foreground block">{c.label}</span>
+                    <span className="font-mono text-[11px] tracking-widest uppercase text-muted-foreground block mb-1">{c.label}</span>
                     {c.href ? (
-                      <a href={c.href} className="text-sm text-foreground hover:text-primary transition-colors">{c.value}</a>
+                      <a href={c.href} className="text-sm font-medium text-foreground hover:text-primary transition-colors">{c.value}</a>
                     ) : (
-                      <span className="text-sm text-foreground">{c.value}</span>
+                      <span className="text-sm font-medium text-foreground">{c.value}</span>
                     )}
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-8">
-              <p className="text-sm text-muted-foreground mb-4">Follow me</p>
-              <div className="flex gap-3">
+            <div className="flex flex-col items-center">
+              <p className="text-sm text-muted-foreground mb-4 uppercase tracking-widest font-mono">My Socials</p>
+              <div className="flex gap-4">
                 {socials.map((s, i) => (
                   <a
                     key={i}
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-xl glass flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/20 transition-all hover:scale-110"
+                    className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all hover:scale-110 shadow-lg"
                   >
                     {s.icon}
                   </a>
