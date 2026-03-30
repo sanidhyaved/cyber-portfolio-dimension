@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { Shield, Terminal, Youtube } from "lucide-react";
+import { Shield, Terminal, Youtube, Award } from "lucide-react";
 
 const achievements = [
   {
-    icon: <Shield className="w-7 h-7" />,
+    icon: <Shield className="w-8 h-8" />,
     title: "Microsoft MSRC",
     metric: "#13",
     metricLabel: "Global Rank",
@@ -11,14 +11,14 @@ const achievements = [
     featured: true,
   },
   {
-    icon: <Terminal className="w-7 h-7" />,
-    title: "Intel CVE",
+    icon: <Terminal className="w-8 h-8" />,
+    title: "Intel CVE Discovery",
     metric: "CVE",
     metricLabel: "2023-27298",
     description: "Assigned CVE affecting Intel's WULT software",
   },
   {
-    icon: <Youtube className="w-7 h-7" />,
+    icon: <Youtube className="w-8 h-8" />,
     title: "The Cyber Explorers",
     metric: "YT",
     metricLabel: "Channel",
@@ -28,27 +28,27 @@ const achievements = [
 
 const Achievements = () => {
   return (
-    <section className="py-32 relative" id="achievements">
-      <div className="absolute inset-0 bg-muted/20" />
-      
+    <section className="section-padding relative" id="achievements">
+      <div className="gradient-blob w-[500px] h-[500px] bg-primary/10 top-[-100px] right-[-200px] animate-glow-pulse" />
+
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="mb-16"
         >
-          <span className="font-mono text-[11px] tracking-[0.25em] uppercase text-primary block mb-3">
-            04 — Achievements
+          <span className="font-mono text-xs tracking-widest uppercase text-primary mb-3 block">
+            Achievements
           </span>
-          <h2 className="font-display text-[clamp(3rem,8vw,6rem)] leading-[0.9] text-foreground">
-            NOTABLE
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            Notable
             <br />
-            <span className="text-primary text-glow-green">WINS</span>
+            <span className="text-gradient">wins</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-3 gap-6">
           {achievements.map((a, index) => (
             <motion.div
               key={index}
@@ -56,8 +56,8 @@ const Achievements = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.12 }}
-              className={`group glass rounded-2xl p-8 hover-lift relative overflow-hidden ${
-                a.featured ? 'md:row-span-1' : ''
+              className={`glass-card glow-border rounded-2xl p-8 relative overflow-hidden ${
+                a.featured ? 'ring-1 ring-primary/10' : ''
               }`}
             >
               {a.featured && (
@@ -65,31 +65,25 @@ const Achievements = () => {
               )}
 
               <div className="flex items-start justify-between mb-8">
-                <div className="text-muted-foreground group-hover:text-primary transition-colors">
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
                   {a.icon}
                 </div>
                 {a.featured && (
-                  <span className="font-mono text-[9px] tracking-widest uppercase text-primary/60 border border-primary/15 px-2 py-0.5 rounded-full">
-                    Featured
+                  <span className="font-mono text-[9px] tracking-widest uppercase text-primary border border-primary/15 px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                    <Award className="w-3 h-3" /> Featured
                   </span>
                 )}
               </div>
 
               <div className="mb-4">
-                <span className="font-display text-5xl text-foreground group-hover:text-primary transition-colors">
-                  {a.metric}
-                </span>
-                <span className="font-mono text-[10px] tracking-wider uppercase text-muted-foreground block mt-1">
+                <span className="text-5xl font-bold text-gradient">{a.metric}</span>
+                <span className="font-mono text-xs tracking-wider uppercase text-muted-foreground block mt-1">
                   {a.metricLabel}
                 </span>
               </div>
 
-              <h3 className="font-heading text-base font-bold text-foreground mb-2">
-                {a.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {a.description}
-              </p>
+              <h3 className="text-base font-semibold text-foreground mb-2">{a.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{a.description}</p>
             </motion.div>
           ))}
         </div>

@@ -19,10 +19,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ["Syne", "sans-serif"],
-        mono: ["Space Mono", "monospace"],
-        display: ["Bebas Neue", "sans-serif"],
-        body: ["Inter", "sans-serif"],
+        sans: ["Outfit", "sans-serif"],
+        display: ["Playfair Display", "serif"],
+        mono: ["JetBrains Mono", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",

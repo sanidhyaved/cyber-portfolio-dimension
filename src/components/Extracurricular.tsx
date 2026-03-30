@@ -21,34 +21,32 @@ const activities = [
   },
   {
     icon: <Dumbbell className="w-5 h-5" />,
-    title: "Sports",
+    title: "Sports & Hobbies",
     description: "Swimming, Cricket, Table Tennis, Billiards, Hydroponics",
   },
 ];
 
 const Extracurricular = () => {
   return (
-    <section className="py-32 relative noise" id="extracurricular">
-      <div className="absolute inset-0 gradient-mesh opacity-30" />
-      
+    <section className="section-padding relative" id="extracurricular">
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="mb-16"
         >
-          <span className="font-mono text-[11px] tracking-[0.25em] uppercase text-primary block mb-3">
-            05 — Beyond
+          <span className="font-mono text-xs tracking-widest uppercase text-primary mb-3 block">
+            Beyond Work
           </span>
-          <h2 className="font-display text-[clamp(3rem,8vw,6rem)] leading-[0.9] text-foreground">
-            OUTSIDE
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            Outside
             <br />
-            <span className="text-secondary text-glow-purple">THE CODE</span>
+            <span className="text-gradient">the code</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-4 max-w-4xl">
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
           {activities.map((activity, index) => (
             <motion.div
               key={index}
@@ -56,25 +54,21 @@ const Extracurricular = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group glass rounded-2xl p-6 hover-lift"
+              className="glass-card glow-border rounded-2xl p-6"
             >
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full glass flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0">
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
                   {activity.icon}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-heading text-base font-bold text-foreground group-hover:text-primary transition-colors">
-                    {activity.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                    {activity.description}
-                  </p>
+                  <h3 className="font-semibold text-foreground">{activity.title}</h3>
+                  <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{activity.description}</p>
                   {activity.link && (
                     <a
                       href={activity.link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 font-mono text-[11px] text-primary hover:underline mt-2"
+                      className="inline-flex items-center gap-1.5 font-mono text-xs text-primary hover:underline mt-2"
                     >
                       {activity.link.label}
                       <ExternalLink className="w-3 h-3" />
@@ -85,7 +79,7 @@ const Extracurricular = () => {
                       {activity.tools.map((tool, i) => (
                         <span
                           key={i}
-                          className="font-mono text-[10px] px-2.5 py-0.5 rounded-full border border-foreground/8 text-muted-foreground"
+                          className="font-mono text-[10px] px-2.5 py-1 rounded-full border border-border text-muted-foreground"
                         >
                           {tool}
                         </span>
