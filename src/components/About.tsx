@@ -43,7 +43,7 @@ const About = () => {
               to security.
             </p>
             <p className="text-muted-foreground/60 leading-relaxed">
-              My work has been recognized by industry leaders — from ranking <span className="text-primary font-medium">#13 globally on Microsoft MSRC</span> to 
+              My work has been recognized by industry leaders - from ranking <span className="text-primary font-medium">#13 globally on Microsoft MSRC</span> to 
               discovering vulnerabilities in Intel's software (CVE-2023-27298). I believe in making 
               the internet a safer place, one vulnerability at a time.
             </p>

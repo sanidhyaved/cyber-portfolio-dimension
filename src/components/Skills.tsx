@@ -1,118 +1,108 @@
 import { motion } from "framer-motion";
+import { Code2, Terminal, Database, Shield, Server, Layout, FileJson, Cpu, Activity, Key, Layers, Globe, Fingerprint, Network } from "lucide-react";
 
-const skillCategories = [
-  {
-    title: "Frontend",
-    skills: [
-      { name: "HTML/CSS", level: 90 },
-      { name: "JavaScript", level: 85 },
-      { name: "React", level: 75 },
-    ],
-    gradient: "from-primary to-accent",
-  },
-  {
-    title: "Backend & Languages",
-    skills: [
-      { name: "Python", level: 90 },
-      { name: "C", level: 80 },
-      { name: "SQL", level: 85 },
-      { name: "MongoDB", level: 75 },
-    ],
-    gradient: "from-secondary to-primary",
-  },
-  {
-    title: "Security Tools",
-    skills: [
-      { name: "Burpsuite", level: 95 },
-      { name: "OWASP ZAP", level: 90 },
-      { name: "Nmap", level: 85 },
-      { name: "OSINT Tools", level: 88 },
-    ],
-    gradient: "from-accent to-secondary",
-  },
-  {
-    title: "Frameworks & Standards",
-    skills: [
-      { name: "NIST-RMF", level: 90 },
-      { name: "PCI-DSS", level: 85 },
-      { name: "SOC-2", level: 80 },
-      { name: "CIS Controls", level: 82 },
-    ],
-    gradient: "from-primary to-secondary",
-  },
+// Core technical skills for the scrolling marquee
+const techRow1 = [
+  { name: "React.js", icon: FileJson },
+  { name: "Node.js", icon: Server },
+  { name: "Python", icon: Terminal },
+  { name: "BurpSuite", icon: Shield },
+  { name: "OWASP Top 10", icon: Shield },
+  { name: "Tailwind CSS", icon: Layout },
+  { name: "JavaScript", icon: Code2 },
+  { name: "TypeScript", icon: FileJson },
+  { name: "C / C++", icon: Cpu },
 ];
+
+const techRow2 = [
+  { name: "Nmap", icon: Activity },
+  { name: "Wireshark", icon: Network },
+  { name: "Metasploit", icon: Fingerprint },
+  { name: "SQL", icon: Database },
+  { name: "MongoDB", icon: Database },
+  { name: "Vite", icon: Layers },
+  { name: "NIST-RMF", icon: FileJson },
+  { name: "PCI-DSS", icon: Key },
+  { name: "SOC-2", icon: Shield },
+];
+
+const TechPill = ({ name, icon: Icon }: { name: string; icon: any }) => (
+  <div className="group flex items-center gap-3 px-6 py-3.5 rounded-full bg-muted/40 border border-border/50 hover:bg-muted focus:outline-none transition-all duration-300 hover:scale-105 hover:border-primary/50 relative overflow-hidden backdrop-blur-sm cursor-default">
+    <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 translate-x-[-100%] group-hover:animate-[marquee_2s_ease-in-out_infinite]" />
+    <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
+    <span className="font-mono text-sm text-foreground/80 group-hover:text-foreground transition-colors duration-300">{name}</span>
+  </div>
+);
 
 const Skills = () => {
   return (
-    <section className="section-padding relative" id="skills">
-      <div className="gradient-blob w-[500px] h-[500px] bg-secondary/10 bottom-[-100px] left-[-200px] animate-glow-pulse" />
+    <section className="py-24 md:py-36 relative overflow-hidden" id="skills">
+      {/* Subtle background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-0 md:px-6 relative z-10 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center px-6 md:px-0"
         >
           <span className="font-mono text-xs tracking-widest uppercase text-primary mb-3 block">
-            Skills & Tools
+            Technical Expertise
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-            My technical
-            <br />
-            <span className="text-gradient">arsenal</span>
+          <h2 className="text-4xl md:text-5xl font-light mb-4 text-foreground/90">
+            Tech <span className="font-semibold text-foreground">Stack</span>
           </h2>
+          <p className="text-muted-foreground max-w-lg mx-auto text-sm md:text-base">
+            A fluid showcase of the programming languages, security tools, and frameworks I use to assess and build systems.
+          </p>
         </motion.div>
-
-        {/* Marquee */}
-        <div className="overflow-hidden mb-16 -mx-6">
-          <div className="flex animate-marquee whitespace-nowrap">
-            {[...Array(2)].map((_, ri) => (
-              <div key={ri} className="flex items-center gap-12 mr-12">
-                {["PYTHON", "BURPSUITE", "OWASP", "JAVASCRIPT", "NMAP", "MONGODB", "REACT", "PCI-DSS"].map((s, i) => (
-                  <span key={`${ri}-${i}`} className="font-display text-7xl md:text-9xl text-foreground/[0.03] select-none italic">
-                    {s}
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {skillCategories.map((cat, index) => (
-            <motion.div
-              key={cat.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="glass-card glow-border rounded-2xl p-8"
-            >
-              <h3 className="text-xl font-semibold text-foreground mb-6">{cat.title}</h3>
-              <div className="space-y-5">
-                {cat.skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm text-muted-foreground">{skill.name}</span>
-                      <span className="font-mono text-xs text-primary">{skill.level}%</span>
-                    </div>
-                    <div className="h-1.5 bg-muted rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                        className={`h-full rounded-full bg-gradient-to-r ${cat.gradient}`}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
+
+      {/* Infinite Scrolling Marquees */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 1.2 }}
+        className="w-full relative flex flex-col gap-6"
+      >
+        {/* Row 1 - Moves Left */}
+        <div className="w-full overflow-hidden flex [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <motion.div
+            animate={{ x: [0, -100 * (techRow1.length)] }} // Math hack for perfect looping
+            transition={{
+              repeat: Infinity,
+              ease: "linear",
+              duration: 45,
+            }}
+            className="flex w-max gap-6 px-3"
+            // We use 3 arrays to guarantee screen width coverage
+          >
+            {[...techRow1, ...techRow1, ...techRow1, ...techRow1].map((skill, index) => (
+              <TechPill key={`${skill.name}-1-${index}`} name={skill.name} icon={skill.icon} />
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Row 2 - Moves Right */}
+        <div className="w-full overflow-hidden flex [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <motion.div
+            animate={{ x: [-100 * (techRow2.length), 0] }}
+            transition={{
+              repeat: Infinity,
+              ease: "linear",
+              duration: 50,
+            }}
+            className="flex w-max gap-6 px-3"
+          >
+            {[...techRow2, ...techRow2, ...techRow2, ...techRow2].map((skill, index) => (
+              <TechPill key={`${skill.name}-2-${index}`} name={skill.name} icon={skill.icon} />
+            ))}
+          </motion.div>
+        </div>
+      </motion.div>
     </section>
   );
 };

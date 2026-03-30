@@ -6,7 +6,7 @@ const Footer = () => {
           SV<span className="text-gradient">.</span>
         </span>
         <p className="font-mono text-xs text-muted-foreground tracking-wider">
-          © {new Date().getFullYear()} Sanidhya Ved — All rights reserved
+          © {new Date().getFullYear()} Sanidhya Ved - All rights reserved
         </p>
       </div>
     </footer>

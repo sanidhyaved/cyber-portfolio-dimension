@@ -11,7 +11,7 @@ const activities = [
   {
     icon: <Palette className="w-5 h-5" />,
     title: "Graphic Design",
-    description: "Certificates, banners, posters — 5 month internship",
+    description: "Certificates, banners, posters - 5 month internship",
     tools: ["Photoshop", "Premiere Pro", "Blender"],
   },
   {

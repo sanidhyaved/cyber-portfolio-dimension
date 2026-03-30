@@ -1,7 +1,19 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, Component, ReactNode } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, MeshDistortMaterial, Sphere, Stars } from '@react-three/drei';
 import * as THREE from 'three';
+
+class ErrorBoundary extends Component<{ children: ReactNode; fallback?: ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: ReactNode; fallback?: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() { return { hasError: true }; }
+  render() {
+    if (this.state.hasError) return this.props.fallback ?? null;
+    return this.props.children;
+  }
+}
 
 const GlowOrb = ({ position, color, size = 1 }: { position: [number, number, number]; color: string; size?: number }) => {
   const ref = useRef<THREE.Mesh>(null);
@@ -85,8 +97,14 @@ const ParticleCloud = () => {
   return (
     <points ref={ref}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
-        <bufferAttribute attach="attributes-color" count={count} array={colors} itemSize={3} />
+        <bufferAttribute
+          attach="attributes-position"
+          args={[positions, 3]}
+        />
+        <bufferAttribute
+          attach="attributes-color"
+          args={[colors, 3]}
+        />
       </bufferGeometry>
       <pointsMaterial size={0.02} transparent opacity={0.5} sizeAttenuation vertexColors />
     </points>
@@ -96,23 +114,25 @@ const ParticleCloud = () => {
 const HeroScene = () => {
   return (
     <div className="absolute inset-0 z-0">
-      <Canvas camera={{ position: [0, 0, 6], fov: 50 }} dpr={[1, 1.5]}>
-        <ambientLight intensity={0.2} />
-        <pointLight position={[5, 5, 5]} intensity={0.8} color="#6366f1" />
-        <pointLight position={[-5, -3, 3]} intensity={0.5} color="#a855f7" />
-        <pointLight position={[0, -5, 5]} intensity={0.3} color="#06b6d4" />
-        
-        <GlowOrb position={[2, 0.5, -1]} color="#6366f1" size={1.5} />
-        <GlowOrb position={[-2.5, -0.5, -2]} color="#a855f7" size={1.2} />
-        <GlowOrb position={[0, -2, -1.5]} color="#06b6d4" size={0.8} />
-        
-        <FloatingRing radius={2.8} color="#6366f1" speed={0.12} tilt={0.5} />
-        <FloatingRing radius={3.3} color="#a855f7" speed={-0.08} tilt={1.2} />
-        <FloatingRing radius={3.8} color="#06b6d4" speed={0.06} tilt={0.8} />
-        
-        <ParticleCloud />
-        <Stars radius={60} depth={60} count={800} factor={2.5} saturation={0.2} fade speed={0.8} />
-      </Canvas>
+      <ErrorBoundary fallback={<div className="absolute inset-0 bg-transparent" />}>
+        <Canvas camera={{ position: [0, 0, 6], fov: 50 }} dpr={[1, 1.5]}>
+          <ambientLight intensity={0.2} />
+          <pointLight position={[5, 5, 5]} intensity={0.8} color="#6366f1" />
+          <pointLight position={[-5, -3, 3]} intensity={0.5} color="#a855f7" />
+          <pointLight position={[0, -5, 5]} intensity={0.3} color="#06b6d4" />
+          
+          <GlowOrb position={[2, 0.5, -1]} color="#6366f1" size={1.5} />
+          <GlowOrb position={[-2.5, -0.5, -2]} color="#a855f7" size={1.2} />
+          <GlowOrb position={[0, -2, -1.5]} color="#06b6d4" size={0.8} />
+          
+          <FloatingRing radius={2.8} color="#6366f1" speed={0.12} tilt={0.5} />
+          <FloatingRing radius={3.3} color="#a855f7" speed={-0.08} tilt={1.2} />
+          <FloatingRing radius={3.8} color="#06b6d4" speed={0.06} tilt={0.8} />
+          
+          <ParticleCloud />
+          <Stars radius={60} depth={60} count={800} factor={2.5} saturation={0.2} fade speed={0.8} />
+        </Canvas>
+      </ErrorBoundary>
     </div>
   );
 };

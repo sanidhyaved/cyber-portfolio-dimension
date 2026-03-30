@@ -3,27 +3,42 @@ import { Briefcase } from "lucide-react";
 
 const experiences = [
   {
-    title: "Security Analyst",
-    company: "Codewits Solutions Pvt. Ltd.",
-    period: "2022 — Present",
+    title: "Senior Analyst",
+    company: "AXA GBS",
+    period: "August 2025 - Present",
     type: "Full-time",
     points: [
-      "R&D on SaaS Security Posture Management (SSPM)",
-      "Data extraction & processing from SaaS applications",
-      "Market Intelligence & Data Visualization",
-      "NIST-RMF, PCI-DSS, SOC-2, CIS Controls expertise",
+      "Performed Vulnerability Assessment and Penetration Testing (VAPT) for web, mobile (Android/iOS), and thick client applications.",
+      "Conducted Active Directory penetration testing including privilege escalation, lateral movement, and misconfiguration discovery.",
+      "Performed configuration security assessments of firewalls, routers, and switches based on industry security standards.",
+      "Executed internal and external network penetration testing to identify exploitable vulnerabilities.",
+      "Conducted Security Assessment Framework (SAF) reviews and documented security findings with remediation recommendations.",
+      "Used tools including Burp Suite, Nmap, Metasploit, Nessus, and BloodHound during security assessments."
     ],
   },
   {
-    title: "Web Pentesting",
+    title: "Security Analyst",
+    company: "Codewits Solutions Pvt. Ltd.",
+    period: "July 2022 - November 2024",
+    type: "Full-time",
+    points: [
+      "R&D on the cutting-edge technological product - SaaS Security Posture Management (SSPM).",
+      "Extracted and processed security-related data from SaaS applications for analysis within the core system.",
+      "Performed Market Intelligence, Data Analysis, and Data Visualization using Excel.",
+      "Worked with frameworks including NIST-RMF (800-53), PCI-DSS (v3.2.1 and v4.0), SOC 2, CIS Controls (v8), HIPAA, CIS Google Workspace Foundations Benchmark, and NIST-CSF.",
+      "Tools used: Google Workspace, Microsoft 365, Bitbucket, GitHub, Confluence, Jira, Okta, Linux OS, and open-source security tools."
+    ],
+  },
+  {
+    title: "Web Application Penetration Tester",
     company: "Freelancing",
-    period: "2019 — Present",
+    period: "May 2022 - Present",
     type: "Freelance",
     points: [
-      "3+ years penetration testing experience",
-      "Manual VAPT & vulnerability assessment",
-      "Security consultation & technical reporting",
-      "Application security architecture review",
+      "Performed manual web application penetration testing and vulnerability assessments across multiple client environments.",
+      "Identified vulnerabilities including XSS, SQL Injection, IDOR, SSRF, and authentication bypass issues.",
+      "Prepared detailed vulnerability reports with proof-of-concept and remediation guidance.",
+      "Collaborated with developers to validate fixes and mitigate identified vulnerabilities."
     ],
   },
 ];
