@@ -3,9 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const navItems = [
-  { label: 'Experience', href: '#experience' },
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Education', href: '#education' },
+  { label: 'Experience', href: '#experience' },
   { label: 'Achievements', href: '#achievements' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -15,7 +16,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
+    const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -26,26 +27,33 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'glass-strong' : 'bg-transparent'
+        scrolled ? 'glass-strong shadow-lg shadow-background/50' : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between h-16">
-        <a href="#home" className="font-display text-2xl tracking-wide text-foreground hover:text-primary transition-colors">
-          SV<span className="text-primary">.</span>
+        <a href="#home" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
+          SV<span className="text-gradient">.</span>
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item, i) => (
+          {navItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className="font-mono text-[11px] tracking-wider uppercase text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors relative group"
             >
-              <span className="text-primary/40 mr-1">0{i + 1}</span>
               {item.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300" />
             </a>
           ))}
         </div>
+
+        <a
+          href="#contact"
+          className="hidden md:inline-flex px-5 py-2 text-sm font-medium rounded-full bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:shadow-[0_0_30px_hsl(230_90%_65%/0.3)] transition-all hover:scale-105"
+        >
+          Hire Me
+        </a>
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -64,14 +72,13 @@ const Navbar = () => {
             className="md:hidden glass-strong"
           >
             <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
-              {navItems.map((item, i) => (
+              {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="font-heading text-lg text-foreground hover:text-primary transition-colors"
+                  className="text-lg text-foreground hover:text-primary transition-colors"
                 >
-                  <span className="text-primary/40 mr-2 font-mono text-xs">0{i + 1}</span>
                   {item.label}
                 </a>
               ))}
